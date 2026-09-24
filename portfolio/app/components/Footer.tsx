@@ -1,7 +1,7 @@
 export default function Footer() {
-    return (
-      <footer className="py-6 text-center text-gray-500 text-sm">
-        Built with ❤️ by Mojolaoluwa Olanusi &copy; {new Date().getFullYear()}
-      </footer>
-    );
-  }
+  return (
+    <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-400">
+      Built with care by Mojolaoluwa Olanusi &copy; {new Date().getFullYear()}
+    </footer>
+  );
+}

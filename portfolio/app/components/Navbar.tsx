@@ -1,16 +1,26 @@
-"use client";
-import Link from "next/link";
-
 export default function Navbar() {
+  const links = [
+    { label: "About", href: "#about" },
+    { label: "Tech", href: "#tech" },
+    { label: "Projects", href: "#projects" },
+    { label: "Creative", href: "#creative" },
+    { label: "Certificates", href: "#certificates" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   return (
-    <nav className="fixed top-0 w-full bg-gray-950/80 backdrop-blur-sm z-50 border-b border-gray-800">
-      <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
-        <span className="font-bold text-brand">Mojolaoluwa</span>
-        <div className="flex gap-6 text-sm">
-          <a href="#about" className="hover:text-brand">About</a>
-          <a href="#tech" className="hover:text-brand">Tech</a>
-          <a href="#projects" className="hover:text-brand">Projects</a>
-          <a href="#contact" className="hover:text-brand">Contact</a>
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-800/80 bg-slate-950/75 backdrop-blur-xl">
+      <div className="section-shell flex items-center justify-between py-4">
+        <a href="#top" className="text-lg font-bold text-white">
+          Mojola<span className="text-gradient">luwa</span>
+        </a>
+
+        <div className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
+          {links.map((item) => (
+            <a key={item.href} href={item.href} className="transition hover:text-violet-200">
+              {item.label}
+            </a>
+          ))}
         </div>
       </div>
     </nav>

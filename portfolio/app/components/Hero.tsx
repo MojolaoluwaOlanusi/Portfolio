@@ -1,50 +1,63 @@
-"use client";
-import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { profile, safeText } from "@/lib/content";
 
 export default function Hero() {
+  const location = safeText(profile.location, "Ibadan, Nigeria");
+  const status = safeText(profile.status, "Available for collaborations");
+  const name = safeText(profile.name, "Mojolaoluwa Olanusi");
+  const role = safeText(profile.role, "Full-Stack Developer");
+  const headline = safeText(profile.headline, "I design and build digital products that are useful, memorable, and ready for real users.");
+
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center">
-      {/* Animated background (optional simple gradient) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brand/10 to-transparent" />
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-24 text-center">
+      <div className="grid-pattern absolute inset-0 opacity-30" />
+      <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-violet-500/10 via-violet-500/5 to-transparent" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10"
-      >
-        <h1 className="text-5xl md:text-7xl font-bold mb-4">
-          Mojolaoluwa <span className="text-brand">Olanusi</span>
-        </h1>
+      <div className="section-shell relative z-10">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-4 py-2 text-sm text-violet-200">
+            <span className="inline-block h-2 w-2 rounded-full bg-emerald-400" />
+            {status}
+          </div>
 
-        <p className="text-xl md:text-2xl text-gray-300 mb-8">
-          Full‑Stack Developer & Creative Builder
-        </p>
+          <h1 className="text-5xl font-black tracking-tight text-white md:text-7xl">
+            {name}
+          </h1>
 
-        <div className="flex gap-4 justify-center">
-          <a
-            href="#projects"
-            className="px-6 py-3 bg-brand hover:bg-brand-dark rounded-full font-medium transition-colors"
-          >
-            View My Work
-          </a>
-          <a
-            href="#contact"
-            className="px-6 py-3 border border-gray-600 hover:border-brand rounded-full font-medium transition-colors"
-          >
-            Get In Touch
-          </a>
+          <p className="mt-4 text-2xl font-medium text-slate-300 md:text-3xl">
+            <span className="text-gradient">{role}</span>
+          </p>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl">
+            {headline}
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-300">
+            <span className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1.5">{location}</span>
+            <span className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1.5">Product-minded developer</span>
+            <span className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1.5">Ready to collaborate</span>
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#projects"
+              className="rounded-full bg-violet-500 px-6 py-3 font-medium text-white transition hover:bg-violet-400"
+            >
+              View my work
+            </a>
+            <a
+              href="#contact"
+              className="rounded-full border border-slate-600 bg-slate-900/60 px-6 py-3 font-medium text-slate-100 transition hover:border-violet-400 hover:text-violet-200"
+            >
+              Let&apos;s talk
+            </a>
+          </div>
+
+          <div className="mt-16 flex justify-center text-slate-400">
+            <ArrowDown className="h-6 w-6 animate-bounce" />
+          </div>
         </div>
-
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="mt-16"
-        >
-          <ArrowDown className="w-6 h-6 text-gray-400" />
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -1,89 +1,77 @@
-"use client";
-import { motion } from "framer-motion";
-import { ExternalLink} from "lucide-react";
-
-const projects = [
-  {
-    title: "Snitch",
-    description:
-      "Real‑time social media PWA. Optimistic UI, push notifications, algorithmic feed, media uploads.",
-    tech: ["React", "TypeScript", "Node.js", "MongoDB", "Socket.IO", "Cloudinary"],
-    live: "https://snitch-social-frontend.vercel.app",
-    github: "https://github.com/MojolaoluwaOlanusi/Snitch",
-    featured: true,
-  },
-  {
-    title: "MovieHub",
-    description: "TMDB movie explorer with infinite scroll, search, and detail pages.",
-    tech: ["React", "TMDB API", "TailwindCSS"],
-    live: "https://moviehub-livid.vercel.app",
-    github: "https://github.com/MojolaoluwaOlanusi/MovieHub",
-  },
-  {
-    title: "PERN Todo App",
-    description: "Full‑stack task manager with user auth and drag‑and‑drop.",
-    tech: ["PostgreSQL", "Express", "React", "Node.js", "TailwindCSS"],
-    live: "https://todoapp-mu-ten-68.vercel.app",
-    github: "https://github.com/MojolaoluwaOlanusi/pern-todo-app",
-  },
-];
+import { ExternalLink, GitBranch } from "lucide-react";
+import { projects } from "@/lib/content";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 px-4 max-w-6xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-3xl font-bold mb-10 text-brand">Projects</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className={`bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-brand transition-colors ${
-                project.featured ? "md:col-span-2 lg:col-span-2" : ""
-              }`}
-            >
-              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-              <p className="text-gray-400 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 text-xs bg-brand/10 text-brand rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-4">
-                {project.live !== "#" && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    className="flex items-center gap-1 text-sm text-gray-300 hover:text-brand"
-                  >
-                    <ExternalLink className="w-4 h-4" /> Live
-                  </a>
-                )}
-                <a
-                  href={project.github}
-                  target="_blank"
-                  className="flex items-center gap-1 text-sm text-gray-300 hover:text-brand"
-                >
-                  Code
-                </a>
-              </div>
-            </motion.div>
-          ))}
+    <section id="projects" className="py-20">
+      <div className="section-shell">
+        <div className="mb-10">
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-violet-300">Selected work</p>
+          <h2 className="text-3xl font-bold text-white md:text-4xl">Projects that show range and execution</h2>
         </div>
-      </motion.div>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project) => {
+            const stack = Array.isArray(project.stack) ? (project.stack as string[]) : [];
+            const isFeatured = project.featured === true;
+
+            return (
+              <article
+                key={project.slug}
+                className={`glass-panel rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-violet-400/60 ${
+                  isFeatured ? "md:col-span-2 xl:col-span-2" : ""
+                }`}
+              >
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                  {isFeatured && (
+                    <span className="rounded-full bg-violet-500/15 px-2.5 py-1 text-xs font-medium text-violet-200">
+                      Featured
+                    </span>
+                  )}
+                </div>
+
+                <p className="mb-5 text-base leading-7 text-slate-300">{project.summary}</p>
+
+                <div className="mb-5 flex flex-wrap gap-2">
+                  {stack.map((item) => (
+                    <span
+                      key={`${project.slug}-${item}`}
+                      className="rounded-full border border-slate-700 bg-slate-900/80 px-2.5 py-1 text-xs text-slate-200"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-4 text-sm">
+                  {(typeof project.live === "string" && project.live) && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-violet-200 transition hover:text-violet-100"
+                    >
+                      <ExternalLink className="h-4 w-4" /> Live
+                    </a>
+                  )}
+
+                  {(typeof project.github === "string" && project.github) && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-slate-200 transition hover:text-white"
+                    >
+                      <GitBranch className="h-4 w-4" /> Code
+                    </a>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }

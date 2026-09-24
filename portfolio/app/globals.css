@@ -1,10 +1,61 @@
 @import "tailwindcss";
 @tailwind utilities;
 
+:root {
+  --brand: #8b5cf6;
+  --brand-soft: rgba(139, 92, 246, 0.12);
+  --surface: rgba(15, 23, 42, 0.8);
+  --line: rgba(148, 163, 184, 0.18);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-gray-950 text-gray-100;
+  @apply bg-slate-950 text-slate-100 antialiased;
+  background-image: radial-gradient(circle at top, rgba(139, 92, 246, 0.18), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(34, 211, 238, 0.12), transparent 30%);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+section {
+  position: relative;
+}
+
+.section-shell {
+  @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+.glass-panel {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.34);
+  backdrop-filter: blur(10px);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #c4b5fd 0%, #67e8f9 45%, #f9a8d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grid-pattern {
+  background-image: linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
 }

@@ -1,39 +1,22 @@
-"use client";
-import { motion } from "framer-motion";
+import { about } from "@/lib/content";
 
 export default function About() {
+  const paragraphs = about.content.split(/\n\s*\n/).filter(Boolean);
+
   return (
-    <section id="about" className="py-20 px-4 max-w-4xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-3xl font-bold mb-6 text-brand">About Me</h2>
-        <div className="text-gray-300 space-y-4 text-lg">
-          <p>
-            Hey there! I'm a 16‑year‑old full‑stack developer from Ibadan, Nigeria.
-            I fell in love with coding because it lets me turn ideas into real, working products.
-            When I'm not writing code, I'm designing graphics or editing videos —
-            skills that help me make apps that aren't just functional, but beautiful.
-          </p>
-          <p>
-            My biggest project is{" "}
-            <a
-              href="https://snitch-social-frontend.vercel.app"
-              className="text-brand underline"
-            >
-              Snitch
-            </a>
-            , a social media PWA built from scratch with React, Node.js, MongoDB, and Socket.IO.
-            I'm currently scaling it and learning more about system design and TypeScript.
-          </p>
-          <p>
-            🎯 Goal: launch 5 production‑ready apps and grow Snitch into a vibrant community.
-          </p>
+    <section id="about" className="py-20">
+      <div className="section-shell">
+        <div className="mx-auto max-w-4xl rounded-3xl border border-slate-800 bg-slate-950/40 p-6 md:p-10">
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-violet-300">About</p>
+          <h2 className="mb-8 text-3xl font-bold text-white md:text-4xl">A builder with both code and creative instincts</h2>
+
+          <div className="space-y-5 text-lg leading-8 text-slate-300">
+            {paragraphs.map((paragraph, index) => (
+              <p key={`${paragraph.slice(0, 12)}-${index}`}>{paragraph}</p>
+            ))}
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
