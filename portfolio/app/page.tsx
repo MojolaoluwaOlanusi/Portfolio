@@ -5,6 +5,7 @@ import Projects from "./components/Projects";
 import CreativeWork from "./components/CreativeWork";
 import Certificates from "./components/Certificates";
 import Testimonials from "./components/Testimonials";
+import SocialProof from "./components/SocialProof";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <About />
       <TechStack />
+      <SocialProof />
       <Projects />
       <CreativeWork />
       <Certificates />

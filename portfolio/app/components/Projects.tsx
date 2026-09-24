@@ -1,5 +1,5 @@
 import { ExternalLink, GitBranch } from "lucide-react";
-import { projects } from "@/lib/content";
+import { projects, safeText } from "@/lib/content";
 
 export default function Projects() {
   return (
@@ -23,7 +23,7 @@ export default function Projects() {
                 }`}
               >
                 <div className="mb-4 flex items-center justify-between gap-3">
-                  <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                  <h3 className="text-2xl font-semibold text-white">{safeText(project.title, "Project")}</h3>
                   {isFeatured && (
                     <span className="rounded-full bg-violet-500/15 px-2.5 py-1 text-xs font-medium text-violet-200">
                       Featured
@@ -31,7 +31,15 @@ export default function Projects() {
                   )}
                 </div>
 
-                <p className="mb-5 text-base leading-7 text-slate-300">{project.summary}</p>
+                {safeText(project.picture) && (
+                  <img
+                    src={safeText(project.picture)}
+                    alt={`${safeText(project.title, "Project")} preview`}
+                    className="mb-5 h-64 w-full rounded-2xl object-cover"
+                  />
+                )}
+
+                <p className="mb-5 text-base leading-7 text-slate-300">{safeText(project.summary, "Project summary")}</p>
 
                 <div className="mb-5 flex flex-wrap gap-2">
                   {stack.map((item) => (
@@ -42,6 +50,12 @@ export default function Projects() {
                       {item}
                     </span>
                   ))}
+                </div>
+
+                <div className="mb-4 space-y-3 rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-sm text-slate-300">
+                  <p><span className="font-semibold text-white">Problem:</span> {safeText(project.problem, "The goal was to solve a real user problem with a practical product experience.")}</p>
+                  <p><span className="font-semibold text-white">Process:</span> {safeText(project.process, "I worked through the workflow, design, and implementation in a structured way.")}</p>
+                  <p><span className="font-semibold text-white">Result:</span> {safeText(project.result, "The product delivered a cleaner, smoother end-user experience.")}</p>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 text-sm">
