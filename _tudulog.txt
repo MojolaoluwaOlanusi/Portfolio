@@ -1,0 +1,14 @@
+URL after signup: https://tudu-kanban.vercel.app/login
+BODY: Your friendly todo app
+
+Create your account
+Name
+Email
+Password
+Sign Up
+
+Already have an account? Sign In
+
+Back to OAuth options
+
+By continuing, you agree to our Terms of Service and Privacy Policy

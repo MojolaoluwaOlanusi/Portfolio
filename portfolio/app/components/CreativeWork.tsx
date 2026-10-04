@@ -1,42 +1,42 @@
-import { creativeWorks, groupMediaItemsByName, normalizeMediaGroupName } from "@/lib/content";
-import { getMediaFilesForFolder } from "@/lib/content";
+import { creativeWorks } from "@/lib/content";
 import CreativeWorkExplorer from "./CreativeWorkExplorer";
 
 const creativeSections = [
   {
     title: "3D work",
     subtitle: "Models, archviz, product renders, and animations",
-    folder: "creative work/3d",
     categories: ["models", "archviz", "product-renders", "animations"],
   },
   {
     title: "Graphic design",
     subtitle: "Brand assets, visuals, and concepts",
-    folder: "creative work/graphic-design",
     categories: [],
   },
   {
     title: "Video editing",
     subtitle: "Short-form edits, reels, and motion storytelling",
-    folder: "creative work/video-editing",
     categories: [],
   },
 ];
 
 export default function CreativeWork() {
   const sections = creativeSections.map((section) => {
-    const groups = groupMediaItemsByName(getMediaFilesForFolder(section.folder)).map((group) => {
-      const detail = creativeWorks.find((work) => {
-        const groupKey = group.key.toLowerCase();
-        return [work.slug, work.title]
-          .map((value) => normalizeMediaGroupName(`${value}.png`).toLowerCase())
-          .includes(groupKey);
-      }) ?? null;
+    const category = section.title === "3D work" ? "3d" : section.title.toLowerCase().replace(/\s+/g, "-");
+    const groups = creativeWorks
+      .filter((work) => work.category === category && work.media.length > 0 && !work.slug.includes("template"))
+      .map((work) => ({
+        key: work.slug,
+        title: work.title,
+        items: work.media,
+        detail: work,
+      }));
 
-      return { ...group, detail };
-    });
-
-    return { ...section, groups };
+    return {
+      ...section,
+      groups,
+      previewOnly: true,
+      viewAllHref: `/creative-works/${category}`,
+    };
   });
 
   return (

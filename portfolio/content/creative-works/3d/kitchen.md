@@ -1,6 +1,5 @@
 ---
-title: Bathroom Scene
+title: Kitchen Scene
 summary: Architectural visualization study focused on space, materials, and atmosphere.
-media: [3d/archviz/Bathroom-scene-01.png]
 ---
 Add the story behind this creative work here: the brief, process, tools, and final result.

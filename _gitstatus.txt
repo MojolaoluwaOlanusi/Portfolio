@@ -1,0 +1,78 @@
+ M portfolio/.gitignore
+ M portfolio/README.md
+ M portfolio/app/components/Certificates.tsx
+ M portfolio/app/components/Contact.tsx
+ M portfolio/app/components/CreativeWork.tsx
+ M portfolio/app/components/CreativeWorkExplorer.tsx
+ M portfolio/app/components/Navbar.tsx
+ M portfolio/app/components/Projects.tsx
+ M portfolio/app/components/SocialProof.tsx
+ M portfolio/app/favicon.ico
+ M portfolio/app/layout.tsx
+ M portfolio/app/media/[...path]/route.ts
+ M portfolio/app/page.tsx
+ M portfolio/content/creative-works/3d/bathroom-scene.md
+ M portfolio/content/creative-works/3d/chanel-no-5.md
+ M portfolio/content/creative-works/3d/donut.md
+ M portfolio/content/creative-works/3d/zanotta-williams-couch.md
+ D portfolio/content/creative-works/graphic-design/template.md
+ D portfolio/content/projects/moviehub.md
+ M portfolio/content/projects/snitch.md
+ D portfolio/content/projects/todo-app.md
+ M portfolio/content/skills.md
+ M portfolio/lib/content.ts
+ M portfolio/package-lock.json
+ M portfolio/package.json
+ M portfolio/projects/README.md
+?? .gitignore
+?? _findpw.txt
+?? _gitstatus.txt
+?? "creative work/"
+?? portfolio/.env.example
+?? portfolio/CLOUDINARY.md
+?? portfolio/_findpw.txt
+?? portfolio/app/components/CertificateExplorer.tsx
+?? portfolio/app/components/PortfolioMotion.tsx
+?? portfolio/app/creative-works/
+?? portfolio/app/icon.svg
+?? portfolio/content/creative-works/3d/archviz/
+?? portfolio/content/creative-works/3d/backrooms.md
+?? portfolio/content/creative-works/3d/kitchen.md
+?? portfolio/content/creative-works/3d/models/
+?? portfolio/content/creative-works/3d/ray-ban.md
+?? portfolio/content/creative-works/3d/soborg-chair.md
+?? portfolio/content/creative-works/3d/stair-scene.md
+?? portfolio/content/creative-works/3d/subway-corridor.md
+?? portfolio/content/creative-works/3d/teddy-bear.md
+?? portfolio/content/creative-works/graphic-design/nike-edit.md
+?? portfolio/content/projects/reeli.md
+?? portfolio/content/projects/tudu.md
+?? portfolio/lib/social-proof.ts
+?? projects/
+ portfolio/.gitignore                               |   7 +
+ portfolio/README.md                                | 351 +++++++++++++++++++--
+ portfolio/app/components/Certificates.tsx          |  23 +-
+ portfolio/app/components/Contact.tsx               |  24 +-
+ portfolio/app/components/CreativeWork.tsx          |  32 +-
+ portfolio/app/components/CreativeWorkExplorer.tsx  |  18 +-
+ portfolio/app/components/Navbar.tsx                |   9 +-
+ portfolio/app/components/Projects.tsx              |  19 +-
+ portfolio/app/components/SocialProof.tsx           |  41 ++-
+ portfolio/app/favicon.ico                          | Bin 25931 -> 356 bytes
+ portfolio/app/layout.tsx                           |   7 +
+ portfolio/app/media/[...path]/route.ts             |   6 +-
+ portfolio/app/page.tsx                             |  23 +-
+ .../content/creative-works/3d/bathroom-scene.md    |   1 +
+ portfolio/content/creative-works/3d/chanel-no-5.md |   1 +
+ portfolio/content/creative-works/3d/donut.md       |   1 +
+ .../creative-works/3d/zanotta-williams-couch.md    |   1 +
+ .../creative-works/graphic-design/template.md      |   5 -
+ portfolio/content/projects/moviehub.md             |   9 -
+ portfolio/content/projects/snitch.md               |  10 +-
+ portfolio/content/projects/todo-app.md             |   9 -
+ portfolio/content/skills.md                        |   2 +-
+ portfolio/lib/content.ts                           |  78 ++++-
+ portfolio/package-lock.json                        |  17 +
+ portfolio/package.json                             |   2 +
+ portfolio/projects/README.md                       |   9 +-
+ 26 files changed, 578 insertions(+), 127 deletions(-)

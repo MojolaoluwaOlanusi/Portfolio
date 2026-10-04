@@ -3,6 +3,7 @@ import path from "path";
 
 const creativeMediaRoot = path.resolve(process.cwd(), "..", "creative work");
 const projectMediaRoot = path.resolve(process.cwd(), "projects");
+const certificateMediaRoot = path.resolve(process.cwd(), "certificates");
 
 const contentTypes: Record<string, string> = {
   ".avi": "video/x-msvideo",
@@ -21,8 +22,9 @@ const contentTypes: Record<string, string> = {
 export async function GET(_request: Request, context: { params: Promise<{ path: string[] }> }) {
   const { path: segments } = await context.params;
   const isProjectMedia = segments[0] === "projects";
-  const mediaRoot = isProjectMedia ? projectMediaRoot : creativeMediaRoot;
-  const mediaSegments = isProjectMedia ? segments.slice(1) : segments;
+  const isCertificateMedia = segments[0] === "certificates";
+  const mediaRoot = isProjectMedia ? projectMediaRoot : isCertificateMedia ? certificateMediaRoot : creativeMediaRoot;
+  const mediaSegments = isProjectMedia || isCertificateMedia ? segments.slice(1) : segments;
   const requestedPath = path.resolve(mediaRoot, ...mediaSegments);
 
   if (requestedPath !== mediaRoot && !requestedPath.startsWith(`${mediaRoot}${path.sep}`)) {

@@ -1,4 +1,5 @@
-import { ExternalLink, GitBranch } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 import { projects, safeText } from "@/lib/content";
 
 export default function Projects() {
@@ -11,19 +12,25 @@ export default function Projects() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project) => {
+          {projects.map((project, index) => {
             const stack = Array.isArray(project.stack) ? (project.stack as string[]) : [];
             const isFeatured = project.featured === true;
+            const isLead = index === 0;
 
             return (
               <article
                 key={project.slug}
                 className={`glass-panel rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-violet-400/60 ${
-                  isFeatured ? "md:col-span-2 xl:col-span-2" : ""
+                  isLead ? "md:col-span-2 xl:col-span-2" : ""
                 }`}
               >
                 <div className="mb-4 flex items-center justify-between gap-3">
-                  <h3 className="text-2xl font-semibold text-white">{safeText(project.title, "Project")}</h3>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-semibold tabular-nums text-violet-300/70">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="text-2xl font-semibold text-white">{safeText(project.title, "Project")}</h3>
+                  </div>
                   {isFeatured && (
                     <span className="rounded-full bg-violet-500/15 px-2.5 py-1 text-xs font-medium text-violet-200">
                       Featured
@@ -35,7 +42,7 @@ export default function Projects() {
                   <img
                     src={safeText(project.picture)}
                     alt={`${safeText(project.title, "Project")} preview`}
-                    className="mb-5 h-64 w-full rounded-2xl object-cover"
+                    className={`mb-5 w-full rounded-2xl object-cover ${isLead ? "h-72 md:h-96" : "h-56"}`}
                   />
                 )}
 
@@ -77,7 +84,7 @@ export default function Projects() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 text-slate-200 transition hover:text-white"
                     >
-                      <GitBranch className="h-4 w-4" /> Code
+                      <FaGithub className="h-4 w-4" aria-hidden="true" /> Code
                     </a>
                   )}
                 </div>

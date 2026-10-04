@@ -1,10 +1,13 @@
-import { GitBranch, Link, Mail } from "lucide-react";
+import { PhoneCall, Mail } from "lucide-react";
+import { FaGithub, FaLinkedinIn, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import { profile } from "@/lib/content";
 
 export default function Contact() {
   const email = typeof profile.email === "string" ? profile.email : "olanusimojola@gmail.com";
   const github = typeof profile.github === "string" ? profile.github : "https://github.com/";
   const linkedin = typeof profile.linkedin === "string" ? profile.linkedin : "https://www.linkedin.com/";
+  const whatsapp = "https://wa.me/2348083759076";
+  const xProfile = "https://x.com/mojola1132811";
 
   return (
     <section id="contact" className="py-20">
@@ -31,7 +34,7 @@ export default function Contact() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-violet-400 hover:text-violet-200"
             >
-              <GitBranch className="h-4 w-4" />
+              <FaGithub className="h-4 w-4" aria-hidden="true" />
               GitHub
             </a>
 
@@ -41,8 +44,23 @@ export default function Contact() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-violet-400 hover:text-violet-200"
             >
-              <Link className="h-4 w-4" />
+              <FaLinkedinIn className="h-4 w-4" aria-hidden="true" />
               LinkedIn
+            </a>
+
+            <a href={whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-emerald-400 hover:text-emerald-200">
+              <FaWhatsapp className="h-4 w-4" aria-hidden="true" />
+              WhatsApp · Mojola544
+            </a>
+
+            <a href="tel:+2348083759076" className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-cyan-400 hover:text-cyan-200">
+              <PhoneCall className="h-4 w-4" aria-hidden="true" />
+              Call
+            </a>
+
+            <a href={xProfile} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-900/80 px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-white hover:text-white">
+              <FaXTwitter className="h-4 w-4" aria-hidden="true" />
+             @mojola1132811
             </a>
           </div>
         </div>

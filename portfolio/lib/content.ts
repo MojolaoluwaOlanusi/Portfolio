@@ -17,6 +17,7 @@ export type MediaItem = {
 
 export type CreativeWorkEntry = MarkdownEntry & {
   category: string;
+  media: MediaItem[];
 };
 
 export type ProjectCaseStudy = {
@@ -163,13 +164,22 @@ function readMarkdownFilesRecursively(
     const { data, content } = parseFrontMatter(fs.readFileSync(entryPath, "utf8"));
     const slug = path.basename(entry.name, path.extname(entry.name));
 
+    const mediaPaths = safeArray(data.media);
     entries.push({
+      ...data,
       slug,
       title: safeText(data.title, slug.replace(/[-_]+/g, " ")),
+      problem: safeText(data.problem, slug.replace(/[-_]+/g, " ")),
+      process: safeText(data.process, slug.replace(/[-_]+/g, " ")),
+      result: safeText(data.result, slug.replace(/[-_]+/g, " ")),
       summary: safeText(data.summary, content.slice(0, 180).replace(/\s+/g, " ")),
       content,
       category,
-      ...data,
+      media: mediaPaths.map((mediaPath) => ({
+        name: path.basename(mediaPath),
+        path: getCloudinaryMediaUrl("creative-works", mediaPath) || `/media/${mediaPath.split("/").map(encodeURIComponent).join("/")}`,
+        type: [".mp4", ".mov", ".webm", ".avi", ".m4v"].includes(path.extname(mediaPath).toLowerCase()) ? "video" : "image",
+      })),
     });
   }
 
@@ -188,6 +198,46 @@ export function normalizeMediaGroupName(fileName: string): string {
     .replace(/^-|-$/g, "");
 
   return normalized || withoutExtension;
+}
+
+export function getCloudinaryMediaUrl(folder: string, publicPath: string, localPrefix = ""): string {
+  const cloudinaryBase = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL?.replace(/\/$/, "");
+  const encodedPath = publicPath.split("/").filter(Boolean).map(encodeURIComponent).join("/");
+  const resourceType = /\.(mp4|mov|webm|avi|m4v)$/i.test(publicPath) ? "video" : "image";
+
+  if (cloudinaryBase) {
+    return `${cloudinaryBase}/${resourceType}/upload/${folder}/${encodedPath}`;
+  }
+
+  return localPrefix ? `${localPrefix}/${encodedPath}` : "";
+}
+
+export function getCreativeWorksForCategory(category: string): CreativeWorkEntry[] {
+  return creativeWorks.filter((work) => work.category === category);
+}
+
+export function getProjectMedia(projectSlug: string): MediaItem[] {
+  const localPath = path.join(process.cwd(), "projects", `${projectSlug}.png`);
+  const remotePath = getCloudinaryMediaUrl("projects", `${projectSlug}.png`);
+  if (!fs.existsSync(localPath) && !remotePath) return [];
+
+  return [{
+    name: `${projectSlug}.png`,
+    path: fs.existsSync(localPath) ? `/media/projects/${encodeURIComponent(`${projectSlug}.png`)}` : remotePath,
+    type: "image",
+  }];
+}
+
+export function getCertificatePreview(certificateSlug: string, filename = `${certificateSlug}.png`): MediaItem {
+  const localPath = path.join(process.cwd(), "certificates", filename);
+  const remotePath = getCloudinaryMediaUrl("certificate", filename);
+  if (!fs.existsSync(localPath) && !remotePath) return { name: filename, path: "", type: "image" };
+
+  return {
+    name: filename,
+    path: fs.existsSync(localPath) ? `/media/certificates/${encodeURIComponent(filename)}` : remotePath,
+    type: "image",
+  };
 }
 
 export function groupMediaItemsByName(items: MediaItem[]) {
@@ -252,20 +302,22 @@ export function getMediaFilesForFolder(folderPath: string): MediaItem[] {
   return collectMediaFiles(absoluteFolder, mediaRoot, "/media").sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function getProjectMedia(projectSlug: string): MediaItem[] {
-  const mediaRoot = path.resolve(process.cwd(), "projects");
-
-  if (!fs.existsSync(mediaRoot)) return [];
-
-  const files = collectMediaFiles(mediaRoot, mediaRoot, "/media/projects");
-  return files
-    .filter((item) => path.basename(item.name, path.extname(item.name)).toLowerCase() === projectSlug.toLowerCase())
-    .sort((a, b) => a.name.localeCompare(b.name));
+function getEntryOrder(entry: MarkdownEntry): number {
+  const order = Number(entry.order);
+  return Number.isFinite(order) ? order : Number.MAX_SAFE_INTEGER;
 }
 
 export function readVisibleProjects(): Array<MarkdownEntry & { picture: string }> {
   return readMarkdownCollection("projects")
     .filter((project) => project.hidden !== true)
+    .sort((a, b) => {
+      if (a.featured !== b.featured) return a.featured === true ? -1 : 1;
+
+      const orderDifference = getEntryOrder(a) - getEntryOrder(b);
+      if (orderDifference !== 0) return orderDifference;
+
+      return safeText(a.title).localeCompare(safeText(b.title));
+    })
     .map((project) => ({ ...project, picture: getProjectMedia(project.slug)[0]?.path ?? "" }));
 }
 
@@ -279,9 +331,3 @@ export const creativeWorks = readMarkdownFilesRecursively("creative-works");
 export const certificates = readMarkdownCollection("certificates");
 export const testimonials = readMarkdownCollection("testimonials");
 
-export const socialProof = {
-  projectsCompleted: Math.max(3, allProjects.length),
-  yearsExperience: 2,
-  creativeTracks: 6,
-  collaborations: 8,
-};

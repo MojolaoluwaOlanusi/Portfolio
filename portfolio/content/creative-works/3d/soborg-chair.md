@@ -1,6 +1,5 @@
 ---
-title: Zanotta Williams Couch
+title: Soborg Chair
 summary: A furniture modeling and rendering study focused on proportion, texture, and presentation.
-media: [3d/models/Zanotta-Williams-Couch-01.png, 3d/models/Zanotta-Williams-Couch-02.png]
 ---
 Add the story behind this creative work here: the brief, process, tools, and final result.

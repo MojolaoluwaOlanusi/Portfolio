@@ -1,0 +1,23 @@
+# Creative works media (served from Cloudinary in production).
+# Documentation is kept, binary assets are not committed.
+/creative work/**
+!/creative work/README.md
+
+# Local certificate images (served from Cloudinary in production).
+/portfolio/certificates/**
+!/portfolio/certificates/README.md
+
+# Local project images (served from Cloudinary in production).
+/portfolio/projects/**
+!/portfolio/projects/README.md
+
+# Stray root-level project media.
+/projects/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp

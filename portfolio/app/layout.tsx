@@ -13,9 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mojolaoluwa.vercel.app"),
   title: "Mojolaoluwa Olanusi | Full-Stack Developer",
   description:
     "Full-stack developer portfolio for Mojolaoluwa Olanusi, featuring product design, web development, and creative work.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

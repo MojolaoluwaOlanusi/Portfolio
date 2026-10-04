@@ -9,21 +9,24 @@ import SocialProof from "./components/SocialProof";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import PortfolioMotion from "./components/PortfolioMotion";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <Hero />
-      <About />
-      <TechStack />
-      <SocialProof />
-      <Projects />
-      <CreativeWork />
-      <Certificates />
-      <Testimonials />
-      <Contact />
-      <Footer />
+      <PortfolioMotion>
+        <Hero />
+        <About />
+        <TechStack />
+        <SocialProof />
+        <Projects />
+        <CreativeWork />
+        <Certificates />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </PortfolioMotion>
     </main>
   );
 }

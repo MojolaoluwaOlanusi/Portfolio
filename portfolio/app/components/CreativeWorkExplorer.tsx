@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import type { CreativeWorkEntry, MediaItem } from "@/lib/content";
 
@@ -17,6 +18,8 @@ type CreativeWorkExplorerProps = {
     subtitle: string;
     categories: string[];
     groups: CreativeGroup[];
+    viewAllHref?: string;
+    previewOnly?: boolean;
   }>;
 };
 
@@ -76,7 +79,7 @@ export default function CreativeWorkExplorer({ sections }: Readonly<CreativeWork
 
           {section.groups.length > 0 ? (
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {section.groups.map((group) => (
+              {(section.previewOnly ? section.groups.slice(0, 3) : section.groups).map((group) => (
                 <button
                   key={group.key}
                   type="button"
@@ -97,6 +100,13 @@ export default function CreativeWorkExplorer({ sections }: Readonly<CreativeWork
           ) : (
             <div className="rounded-2xl border border-dashed border-slate-700 bg-slate-900/30 p-6 text-sm text-slate-400">
               This section is ready for your files. Add media into the creative work folder to showcase it here.
+            </div>
+          )}
+          {section.previewOnly && section.groups.length > 3 && section.viewAllHref && (
+            <div className="mt-6">
+              <Link href={section.viewAllHref} className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-300/10 px-5 py-2.5 text-sm font-medium text-cyan-100 transition hover:bg-cyan-300/20">
+                Show more <ChevronRight className="h-4 w-4" />
+              </Link>
             </div>
           )}
         </div>
@@ -153,7 +163,11 @@ export default function CreativeWorkExplorer({ sections }: Readonly<CreativeWork
             <ChevronLeft />
           </button>
           <div className="max-h-[85vh] max-w-6xl overflow-hidden rounded-2xl">
-            <MediaTile item={selectedMedia} className="max-h-[85vh] min-h-64 w-auto max-w-[85vw] object-contain" />
+            {selectedMedia.type === "video" ? (
+              <video src={selectedMedia.path} controls playsInline className="max-h-[85vh] min-h-64 max-w-[85vw]" />
+            ) : (
+              <img src={selectedMedia.path} alt={selectedMedia.name} className="max-h-[85vh] min-h-64 max-w-[85vw] object-contain" />
+            )}
           </div>
           <button type="button" onClick={() => setSelectedMediaIndex((selectedMediaIndex! + 1) % selectedWork.items.length)} className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-slate-900/90 text-white md:right-8" aria-label="Next media">
             <ChevronRight />
