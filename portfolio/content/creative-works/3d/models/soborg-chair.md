@@ -1,6 +1,8 @@
 ---
 title: Soborg Chair
-summary: A furniture modeling and animation study focused on form and presentation.
+summary: A furniture modelling and rendering study focused on proportion, texture and presentation, with an animated turntable.
 media: [3d/models/Soborg-Chair-01.png, 3d/models/Soborg-Chair-animation-01.mp4]
+tools: [Blender]
+order: 21
 ---
-Add the brief, process, tools, and final result for this furniture visualization here.
+Recreating a classic chair design to practise proportion, curved forms and material realism, then presenting it as a still and an animation.

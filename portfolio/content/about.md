@@ -1,8 +1,15 @@
 ---
 title: About Me
 ---
-I’m a full-stack web developer who loves building products that work beautifully and feel intentional. My work sits at the intersection of code, design, and creativity, which means I don’t just build features — I think about the experience, the flow, and the user impact behind every product.
+I'm a full-stack developer based in Ibadan, Nigeria, and I build products end to end: database schema, API, interface, tests and deployment. I've shipped three production apps on my own: a real-time social network, a Kanban workspace with AI-assisted planning, and a movie discovery platform.
 
-I enjoy working across the stack, from front-end interfaces to back-end systems, and I’m always looking for ways to improve speed, usability, and product quality. I also work with 3D design tools like Blender and Adobe Substance 3D, as well as visual design and video editing, which helps me create richer digital experiences.
+I care about the layer users never see: caching and pub/sub so real-time features hold up under load, presigned uploads so media never touches the server, and test suites that stop fixed bugs from coming back. I'm just as particular about the layer they do see, like spacing, motion and hierarchy.
 
-I’m collaborative, fast to learn, and genuinely excited by challenging projects. Whether it’s building an app, refining a brand, or supporting a product launch, I approach every project with curiosity, discipline, and energy.
+Away from the editor I model, light and render in Blender (with Adobe Substance 3D for materials), and I design graphics and edit video. That visual training shapes how I build interfaces, and it's why the creative work below sits next to the code.
+
+I'm studying towards a BSc in Software Engineering at Obafemi Awolowo University and looking for an internship or junior role where I can contribute to a real codebase, as well as freelance and collaborative projects.
+
+## Pillars
+- Full-stack engineering - React, TypeScript, Node.js, PostgreSQL and MongoDB, from schema to deployment.
+- Real-time systems - WebSockets, Redis pub/sub, background queues and web push notifications.
+- Creative craft - 3D modelling and rendering, graphic design and video editing.

@@ -14,24 +14,20 @@ export default function PortfolioMotion({ children }: PortfolioMotionProps) {
     gsap.registerPlugin(ScrollTrigger);
 
     const context = gsap.context(() => {
-      const sections = gsap.utils.toArray<HTMLElement>("section", containerRef.current);
-      sections.forEach((section, index) => {
+      gsap.utils.toArray<HTMLElement>("section", containerRef.current).forEach((section, index) => {
         if (index === 0) return;
-        gsap.fromTo(section, {
-          autoAlpha: 0,
-          x: index % 2 === 0 ? 20 : -20,
-        }, {
-          autoAlpha: 1,
-          x: 0,
-          duration: 0.65,
-          ease: "power2.out",
-          clearProps: "transform",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 88%",
-            once: true,
+        gsap.fromTo(
+          section,
+          { autoAlpha: 0, y: 28 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            clearProps: "transform",
+            scrollTrigger: { trigger: section, start: "top 90%", once: true },
           },
-        });
+        );
       });
     }, containerRef);
 
