@@ -1,11 +1,14 @@
 ---
 name: Mojolaoluwa Olanusi
-role: Full-Stack Developer
-headline: I design and build digital products that are useful, memorable, and ready for real users.
+role: Full-Stack Developer & 3D Artist
+headline: I build real-time, production-ready web apps, and craft the 3D and visual work that makes them memorable.
 location: Ibadan, Nigeria
+since: 2024
 email: olanusimojola@gmail.com
 github: https://github.com/MojolaoluwaOlanusi
 linkedin: https://www.linkedin.com/in/mojolaoluwa-olanusi
-status: Available for freelance projects, product collaborations, and creative partnerships
+x: https://x.com/mojola1132811
+whatsapp: https://wa.me/2348083759076
+status: Open to internships, freelance work and collaborations
 ---
-I’m a full-stack developer with a creative edge. I enjoy turning ideas into polished experiences by combining functional engineering with product thinking, design, and storytelling.
+Full-stack developer with a creative edge: I own products end to end, from database schema and API to interface, tests and deployment.

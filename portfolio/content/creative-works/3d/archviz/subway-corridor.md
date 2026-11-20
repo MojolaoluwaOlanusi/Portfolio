@@ -1,6 +1,8 @@
 ---
 title: Subway Corridor
-summary: A corridor environment render focused on perspective, lighting, and atmosphere.
+summary: A subway corridor environment focused on perspective, lighting and atmosphere, built while following a tutorial by Andrew Price.
 media: [3d/archviz/Subway-corridor-01.png]
+tools: [Blender]
+order: 13
 ---
-Add the brief, process, tools, and final result for this architectural visualization here.
+Built while following Andrew Price's (Blender Guru) tutorial to learn environment modelling, tiled materials and moody lighting. A study piece that sharpened the techniques used in the other archviz scenes.
